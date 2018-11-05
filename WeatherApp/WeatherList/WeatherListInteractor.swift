@@ -17,7 +17,7 @@ protocol WeatherListInteraction {
 protocol WeatherListInteractionOutput: class {
     var weather : Weather? { get }
     func refreshWeatherList(with forecast: Weather)
-//    func showLoadingWeatherListError(_ error: ErrorType)
+    func showLoadingWeatherListError(_ error: ErrorType)
 }
 
 // MARK:- Interactor
@@ -34,9 +34,15 @@ class WeatherListInteractor: WeatherListInteraction {
     }
     
     func loadWeatherForecasts() {
-        weatherService.getForcasts { (responeWeather) in
-            self.weather = responeWeather
-            self.output?.refreshWeatherList(with: responeWeather)
+        weatherService.getForcasts { (result) in
+            switch result {
+            case .success(let weather):
+                self.weather = weather
+                self.output?.refreshWeatherList(with: weather)
+            case .failure(let errorType):
+                self.output?.showLoadingWeatherListError(errorType)
+            }
+            
         }
     }
     

@@ -12,12 +12,18 @@ import Alamofire
 class WeatherService {
     static var shared = WeatherService()
     
-    func getForcasts(completion : @escaping (_ result: Weather) -> Void){
+    func getForcasts(completion : @escaping (_ result: ResultCallback<Weather>) -> Void){
         
         Alamofire.request(APIBuilder.ApiForcastParis16).responseWeather { response in
-                 if let weather = response.result.value {
-                   completion(weather)
-                 }
-               }
+            
+            if(response.error != nil){
+                completion(ResultCallback.failure(ErrorType.noInternet))
+                return
+            }
+            
+            if let weather = response.result.value {
+               completion(ResultCallback.success(weather))
+            }
+        }
     }
 }

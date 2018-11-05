@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-struct Weather: Codable {
+struct Weather: Codable, Equatable {
     let city: City
     let cod: String
     let message: Double
@@ -22,7 +22,7 @@ struct Weather: Codable {
 }
 
 
-struct City: Codable {
+struct City: Codable, Equatable {
     let id: Int
     let name: String
     let coord: Coord
@@ -30,11 +30,11 @@ struct City: Codable {
     let population: Int
 }
 
-struct Coord: Codable {
+struct Coord: Codable, Equatable {
     let lon, lat: Double
 }
 
-struct Forecast: Codable {
+struct Forecast: Codable, Equatable {
     let dt: Int
     let temp: Temp
     let pressure: Double
@@ -43,20 +43,30 @@ struct Forecast: Codable {
     let speed: Double
     let deg, clouds: Int
     let rain: Double?
+    
+    func commentOnTempo() -> String{
+        if(self.temp.max > 25){
+            return "il fait chaud"
+        }
+        if(self.temp.min < 10){
+            return "il fait froid"
+        }
+        return ""
+    }
 }
 
-struct Temp: Codable {
+struct Temp: Codable, Equatable {
     let day, min, max, night: Double
     let eve, morn: Double
 }
 
-struct WeatherElement: Codable {
+struct WeatherElement: Codable, Equatable {
     let id: Int
     let main: Main
     let description, icon: String
 }
 
-enum Main: String, Codable {
+enum Main: String, Codable, Equatable {
     case clear = "Clear"
     case clouds = "Clouds"
     case rain = "Rain"

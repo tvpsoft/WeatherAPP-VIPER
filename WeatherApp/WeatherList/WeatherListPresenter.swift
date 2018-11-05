@@ -74,13 +74,14 @@ class WeatherListPresenter: WeatherListPresentation {
 
 
 extension WeatherListPresenter: WeatherListInteractionOutput {
+    
     func refreshWeatherList(with forecast: Weather) {
         self.weather = forecast
     }
     
-    
-    func showLoadingMovieListError(_ error: ErrorType) {
+    func showLoadingWeatherListError(_ error: ErrorType) {
         weatherListViewInterface?.showLoadingError(errorMessage: "Some Error occured")
     }
+    
 }
 

@@ -57,6 +57,9 @@ extension WeatherListViewController: WeatherListViewInterface {
     
     func showLoadingError(errorMessage: String) {
         print("show error messagae: \(errorMessage)")
+        let alert = UIAlertController(title: "Error", message: "Can not get data.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }
 

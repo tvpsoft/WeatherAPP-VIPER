@@ -89,18 +89,10 @@ extension WeatherDetailViewController: WeatherDetailViewInterface {
         tempoEveningLabel.text = "\(forecast.temp.eve)º"
         tempoNightLabel.text = "\(forecast.temp.night)º"
         
-        ilFaitLabel.text = commentOnTempo(forecast: forecast)
+        ilFaitLabel.text = forecast.commentOnTempo()
         ilFaitLabel.isHidden = (ilFaitLabel.text?.count)! == 0
         
     }
     
-    func commentOnTempo(forecast : Forecast) -> String{
-        if(forecast.temp.max > 25){
-            return "il fait chaud"
-        }
-        if(forecast.temp.min < 10){
-            return "il fait froid"
-        }
-        return ""
-    }
+    
 }
