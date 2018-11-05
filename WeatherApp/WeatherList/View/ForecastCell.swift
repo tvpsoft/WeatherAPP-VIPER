@@ -18,7 +18,7 @@ class ForecastCell: BaseUICollectionViewCell {
         let lb = UILabel()
         lb.textAlignment = .left
         lb.textColor = .black
-        lb.font = UIFont.boldSystemFont(ofSize: 13)
+        lb.font = UIFont.boldSystemFont(ofSize: 14)
         return lb
     }()
     
@@ -33,7 +33,7 @@ class ForecastCell: BaseUICollectionViewCell {
         let lb = UILabel()
         lb.textAlignment = .center
         lb.textColor = .darkGray
-        lb.font = UIFont.systemFont(ofSize: 12)
+        lb.font = UIFont.systemFont(ofSize: 14)
         return lb
     }()
     
@@ -41,7 +41,7 @@ class ForecastCell: BaseUICollectionViewCell {
         let lb = UILabel()
         lb.textAlignment = .center
         lb.textColor = .black
-        lb.font = UIFont.systemFont(ofSize: 12)
+        lb.font = UIFont.systemFont(ofSize: 14)
         return lb
     }()
     
@@ -71,7 +71,6 @@ class ForecastCell: BaseUICollectionViewCell {
         maxLabel.text = "\(lround((forecast?.temp.max)!))"
         
         let strUrl =  APIBuilder.ApiImageURL + (forecast?.weather[0].icon)! + ".png"
-        print(strUrl)
         iconImageView.af_setImage(withURL: URL(string: strUrl)!)
     
     }

@@ -14,7 +14,7 @@ class WeatherDetailContainer {
     lazy var presenter = WeatherDetailPresenter(interactor: interactor, router: router)
     
     func createModule(for forecast: Forecast) -> UIViewController {
-        let view = WeatherDetailViewController()
+        let view = UIStoryboard(name: "MainStoryboard", bundle: nil).instantiateViewController(withIdentifier: "WeatherDetailViewController") as! WeatherDetailViewController
         view.presenter = presenter
         interactor.forecast = forecast
         presenter.viewInterface = view
